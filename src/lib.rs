@@ -1,3 +1,5 @@
+mod util;
+
 use std::{
     fs::File,
     io::{BufReader, Read},
@@ -52,6 +54,12 @@ impl Rng {
     /// Size of the internal buffer
     pub fn buf_size(&self) -> usize {
         self.buf.len()
+    }
+
+    pub fn as_string(&self) -> String {
+        let scaled = util::scale_to_utf8(self.buf.clone());
+        // unsafe is ok, because scale_to_utf8 scales the buffer
+        unsafe { String::from(std::str::from_utf8_unchecked(&scaled)) }
     }
 }
 
