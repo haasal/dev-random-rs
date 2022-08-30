@@ -55,6 +55,12 @@ impl Rng {
     }
 }
 
+impl AsRef<[u8]> for Rng {
+    fn as_ref(&self) -> &[u8] {
+        &self.buf
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use crate::{get_bytes, Rng};
