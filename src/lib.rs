@@ -56,6 +56,8 @@ impl Rng {
         self.buf.len()
     }
 
+    /// Returns the internal buffer as a String.
+    /// Relativelt expensive as the internal buffer has to be cloned and a new String is allocated.
     pub fn as_string(&self) -> String {
         let scaled = util::scale_to_utf8(self.buf.clone());
         // unsafe is ok, because scale_to_utf8 scales the buffer
